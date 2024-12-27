@@ -8,6 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 PROXY_HOST = "in.proxymesh.com"
 PROXY_PORT = 31280
@@ -106,11 +107,14 @@ def scrapping_script():
         username.send_keys(Keys.RETURN)
 
         # Wait until the username input field is present and interactable
-        password = WebDriverWait(driver, 30).until(
-            EC.presence_of_element_located((By.NAME, "text"))
-        )
-        password.send_keys("Shiraz284237810")
-        password.send_keys(Keys.RETURN)
+        try:
+            password = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.NAME, "text"))
+            )
+            password.send_keys("Shiraz284237810")
+            password.send_keys(Keys.RETURN)
+        except TimeoutException:
+            pass
 
         # Wait until the password input field is present and interactable
         password = WebDriverWait(driver, 30).until(

@@ -9,9 +9,9 @@ async function runScript() {
     const data = await response.json();
 
     if (data.trends && data.trend_data) {
-      const dateValue = data.trend_data.date?.["$date"];
+      const dateValue = data.trend_data.date;
       document.getElementById("trend-date").innerText = dateValue
-        ? new Date(dateValue).toLocaleString()
+        ? dateValue
         : "No Date Available";
 
       document.getElementById("trend-list").innerHTML = data.trends

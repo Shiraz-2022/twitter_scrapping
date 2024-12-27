@@ -7,10 +7,13 @@ from flask_cors import CORS
 from bson import json_util
 import json
 import uuid
+from datetime import datetime
+
 
 app = Flask(__name__)
 
 CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 @app.route("/")
 def hello():
@@ -21,6 +24,9 @@ def run_script():
     client = get_mongo_client()  
     db = get_mongo_db(client)    
     trends_collection = get_trends_collection(db)  
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+
 
     result = scrapping_script()
     print(result)
@@ -31,7 +37,7 @@ def run_script():
         trend_data = {
             "unique_id": uuid.uuid4().hex,
             "trends": top_trends,
-            "date": datetime.datetime.now(),
+            "date": dt_string,
             "ip_address": proxy_ip ,
         }
 
