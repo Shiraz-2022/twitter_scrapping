@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scraping Twitter</title>
+  </head>
+  <body>
+    <div>
+      <!-- Button to trigger the scraping script -->
+      <button onclick="runScript()">Click here to run the script</button>
+
+      <!-- Display the trending topics -->
+      <h2>
+        These are the most happening topics as on <span id="trend-date"></span>
+      </h2>
+      <ul id="trend-list">
+        <!-- List items will be dynamically inserted here -->
+      </ul>
+
+      <!-- Display the IP address used -->
+      <h2>
+        The IP address used for this query was<span id="ip-address"></span>
+      </h2>
+
+      <!-- Display the JSON extract from MongoDB -->
+      <h2>Here’s a JSON extract of this record from the MongoDB:</h2>
+      <pre id="json-data"></pre>
+    </div>
+
+    <!-- Button to get trends data from MongoDB -->
+    <button onclick="getTrends()">Click here to run the query again</button>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
